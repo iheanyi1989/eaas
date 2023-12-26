@@ -1,0 +1,22 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+paths:
+  /testgettemplate:
+    get:
+      summary: get template
+      description: Return a specified template
+      responses:
+        "200":
+          description: Success
+        "500":
+          description: "Internal Server Error"
+          content: {}
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambdaArn}/invocations"
+        responses:
+          default:
+            statusCode: "200"
+        httpMethod: POST
+        type: "aws_proxy"
